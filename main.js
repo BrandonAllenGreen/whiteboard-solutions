@@ -111,4 +111,45 @@ const minMaxLengthAverage = arr => {
   return [min, max, len, +avg.toFixed(2)];
 };
 
+/* Create a function that returns true if a number is prime and false if it's not. */
+
+const primeCheck = num => {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num > 1;
+};
+
+/* Create a func that takes an arr of nums & returns an arr where each num is the sum of itself + all previous nums in the arr. 
+Example: [1, 2, 3] ➞ [1, 3, 6] */
+
+const cumulativeSum = arr => {
+  let sum = 0;
+  return arr.map(num => {
+    return (sum += num);
+  });
+};
+
+/* Create a func that takes 3 arguments (str, strLength, strSuffix) & returns a truncated string. 
+Truncated returned string length should adjust to passed length in parameters regardless of length of the suffix.
+
+ str: Original string.
+ strLength: Truncated length limit.
+ strSuffix: Optional suffix string parameter. 
+
+ Example:  "CatDogDuck", 9, "Rat" ➞ "CatDogRat" */
+
+const strTruncate = (str, strLength, strSuffix) => {
+  let truncated;
+
+  if (!strSuffix) {
+    truncated = str.substr(0, strLength);
+  } else {
+    truncated = str.substr(0, strLength - strSuffix.length) + strSuffix;
+  }
+  return truncated;
+};
+
 /*  */
