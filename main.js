@@ -18,6 +18,26 @@ const fizzbuzz = n => {
   }
 };
 
+/* Create a func that takes a str & returns a new str with its first & last chars swapped, except under 3 conditions:
+1. If the length of the str is less than 2, return "Incompatible.".
+2. If the argument is not a str, return "Incompatible.".
+3. If the first and last chars are the same, return "Two's a pair.". 
+Example: "Cat, dog, and mouse." ➞ ".at, dog, and mouseC" */
+
+const swapFirstLastChars = str => {
+  if (typeof str !== 'string' || str.length < 2) {
+    return 'Incompatible.';
+  } else if (str.charAt(0) === str.charAt(str.length - 1)) {
+    return "Two's a pair.";
+  } else {
+    return (
+      str.charAt(str.length - 1) +
+      str.substring(1, str.length - 1) +
+      str.charAt(0)
+    );
+  }
+};
+
 /* Add up the numbers from a single number.
 Example: 1 + 2 + 3 + 4 = 10. */
 
@@ -72,3 +92,23 @@ const removeDupesAndSort = arr => {
     return a - b;
   });
 };
+
+/* Find the min, max, length and avg values for a given arr of integers.
+Example: [30, 43, 20, 92, 3, 74] ➞ [3, 92, 6, 43.67] */
+
+const minMaxLengthAverage = arr => {
+  const sorted = arr.sort((a, b) => {
+    return a - b;
+  });
+  const min = sorted[0];
+  const max = sorted[sorted.length - 1];
+  const len = sorted.length;
+  const avg =
+    sorted.reduce((count, num) => {
+      return count + num;
+    }, 0) / len;
+
+  return [min, max, len, +avg.toFixed(2)];
+};
+
+/*  */
