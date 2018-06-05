@@ -1,4 +1,4 @@
-// Whiteboard Problems & Solutions //
+///////////// Whiteboard Problems & Solutions /////////////
 
 /* Write a program that console logs the numbers from 1 to n. But for multiples of three print “fizz”
 instead of the number and for the multiples of five print “buzz”. For numbers which are multiples 
@@ -28,7 +28,7 @@ const addUp = n => {
   return n + addUp(n - 1);
 };
 
-/*  Take an integer and return the factorial of that integer.
+/* Return the factorial of an integer.
 Example: 5! = 120 */
 
 const factorial = n => {
@@ -47,4 +47,28 @@ const capFirst = arr => {
   });
 };
 
-/*  */
+/* Test if 2 strings are anagrams (case insensitive).
+Example: 'Dave Barry', 'Ray Adverb' ➞ true */
+
+const anagramCheck = (str1, str2) => {
+  const sortStr = s => {
+    return s
+      .toLowerCase()
+      .split('')
+      .sort()
+      .join('');
+  };
+  return sortStr(str1) === sortStr(str2);
+};
+
+/* Remove all duplicate integers from arr and sort from least to greatest.
+Example: [1, 4, 4, 4, 3, 2, 1, 2] ➞ [1, 2, 3, 4] */
+
+const removeDupesAndSort = arr => {
+  const filtered = arr.filter((x, i, a) => {
+    return a.indexOf(x) === i;
+  });
+  return filtered.sort((a, b) => {
+    return a - b;
+  });
+};
