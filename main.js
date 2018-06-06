@@ -132,24 +132,43 @@ const cumulativeSum = arr => {
   });
 };
 
-/* Create a func that takes 3 arguments (str, strLength, strSuffix) & returns a truncated string. 
+/* Create a one line function that takes 3 arguments (str, strLength, strSuffix) & returns a truncated string. 
+
+str: Original string.
+strLength: Truncated length limit.
+strSuffix: Optional suffix string parameter. 
+
 Truncated returned string length should adjust to passed length in parameters regardless of length of the suffix.
 
- str: Original string.
- strLength: Truncated length limit.
- strSuffix: Optional suffix string parameter. 
-
- Example:  "CatDogDuck", 9, "Rat" ➞ "CatDogRat" */
+Example:  "CatDogDuck", 9, "Rat" ➞ "CatDogRat" */
 
 const strTruncate = (str, strLength, strSuffix) => {
-  let truncated;
-
-  if (!strSuffix) {
-    truncated = str.substr(0, strLength);
-  } else {
-    truncated = str.substr(0, strLength - strSuffix.length) + strSuffix;
-  }
-  return truncated;
+  return strSuffix
+    ? str.substr(0, strLength - strSuffix.length) + strSuffix
+    : str.substr(0, strLength);
 };
 
-/*  */
+/* Given a str, return the char that is most commonly used in the str.
+Example: 'abbccccccdd" ➞ 'c' */
+
+const mostUsedChar = str => {
+  const charObj = {};
+  let max = 0;
+  let maxChar = '';
+
+  for (char of str) {
+    if (charObj[char]) {
+      charObj[char]++;
+    } else {
+      charObj[char] = 1;
+    }
+  }
+
+  for (let char in charObj) {
+    if (charObj[char] > max) {
+      max = charObj[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
+};
