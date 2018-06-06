@@ -18,6 +18,26 @@ const fizzbuzz = n => {
   }
 };
 
+/* Create a func that takes a str & returns a new str with its first & last chars swapped, except under 3 conditions:
+1. If the length of the str is less than 2, return "Incompatible.".
+2. If the argument is not a str, return "Incompatible.".
+3. If the first and last chars are the same, return "Two's a pair.". 
+Example: "Cat, dog, and mouse." ➞ ".at, dog, and mouseC" */
+
+const swapFirstLastChars = str => {
+  if (typeof str !== 'string' || str.length < 2) {
+    return 'Incompatible.';
+  } else if (str.charAt(0) === str.charAt(str.length - 1)) {
+    return "Two's a pair.";
+  } else {
+    return (
+      str.charAt(str.length - 1) +
+      str.substring(1, str.length - 1) +
+      str.charAt(0)
+    );
+  }
+};
+
 /* Add up the numbers from a single number.
 Example: 1 + 2 + 3 + 4 = 10. */
 
@@ -72,3 +92,98 @@ const removeDupesAndSort = arr => {
     return a - b;
   });
 };
+
+/* Find the min, max, length and avg values for a given arr of integers.
+Example: [30, 43, 20, 92, 3, 74] ➞ [3, 92, 6, 43.67] */
+
+const minMaxLengthAverage = arr => {
+  const sorted = arr.sort((a, b) => {
+    return a - b;
+  });
+  const min = sorted[0];
+  const max = sorted[sorted.length - 1];
+  const len = sorted.length;
+  const avg =
+    sorted.reduce((count, num) => {
+      return count + num;
+    }, 0) / len;
+
+  return [min, max, len, +avg.toFixed(2)];
+};
+
+/* Create a function that returns true if a number is prime and false if it's not. */
+
+const primeCheck = num => {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num > 1;
+};
+
+/* Create a func that takes an arr of nums & returns an arr where each num is the sum of itself + all previous nums in the arr. 
+Example: [1, 2, 3] ➞ [1, 3, 6] */
+
+const cumulativeSum = arr => {
+  let sum = 0;
+  return arr.map(num => {
+    return (sum += num);
+  });
+};
+
+/* Create a one line function that takes 3 arguments (str, strLength, strSuffix) & returns a truncated string. 
+
+str: Original string.
+strLength: Truncated length limit.
+strSuffix: Optional suffix string parameter. 
+
+Truncated returned string length should adjust to passed length in parameters regardless of length of the suffix.
+
+Example:  "CatDogDuck", 9, "Rat" ➞ "CatDogRat" */
+
+const strTruncate = (str, strLength, strSuffix) => {
+  return strSuffix
+    ? str.substr(0, strLength - strSuffix.length) + strSuffix
+    : str.substr(0, strLength);
+};
+
+/* Given a str, return the char that is most commonly used in the str.
+Example: 'abbccccccdd" ➞ 'c' */
+
+const mostUsedChar = str => {
+  const charObj = {};
+  let max = 0;
+  let maxChar = '';
+
+  for (char of str) {
+    if (charObj[char]) {
+      charObj[char]++;
+    } else {
+      charObj[char] = 1;
+    }
+  }
+
+  for (let char in charObj) {
+    if (charObj[char] > max) {
+      max = charObj[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
+};
+
+/* Write a func that takes 4 str arguments. You will be comparing the first str to the 3 next str. Verify if the first str starts with the second str, includes the third str, & ends with the fourth str. If the first str passes all checks, return the str "My head, body, and tail.",otherwise, return "Incomplete.". 
+Example: "Centipede", "Cent", "tip", "pede" ➞ "My head, body, and tail." */
+
+const verifySubstrs = (mainStr, head, body, tail) => {
+
+  let mainStrHead = mainStr.substr(0, head.length);
+  let mainStrTail = mainStr.substr(mainStr.length - tail.length)
+
+  if ( mainStrHead === head && mainStr.includes(body) && mainStrTail === tail ) {
+    return 'My head, body, and tail.';
+  }
+
+  return 'Incomplete.'
+}
