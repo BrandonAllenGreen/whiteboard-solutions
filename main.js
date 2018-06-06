@@ -172,3 +172,18 @@ const mostUsedChar = str => {
   }
   return maxChar;
 };
+
+/* Write a func that takes 4 str arguments. You will be comparing the first str to the 3 next str. Verify if the first str starts with the second str, includes the third str, & ends with the fourth str. If the first str passes all checks, return the str "My head, body, and tail.",otherwise, return "Incomplete.". 
+Example: "Centipede", "Cent", "tip", "pede" ➞ "My head, body, and tail." */
+
+const verifySubstrs = (mainStr, head, body, tail) => {
+
+  let mainStrHead = mainStr.substr(0, head.length);
+  let mainStrTail = mainStr.substr(mainStr.length - tail.length)
+
+  if ( mainStrHead === head && mainStr.includes(body) && mainStrTail === tail ) {
+    return 'My head, body, and tail.';
+  }
+
+  return 'Incomplete.'
+}
