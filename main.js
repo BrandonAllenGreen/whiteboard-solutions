@@ -78,6 +78,7 @@ const anagramCheck = (str1, str2) => {
       .sort()
       .join('');
   };
+
   return sortStr(str1) === sortStr(str2);
 };
 
@@ -274,4 +275,29 @@ const reverseWords = str => {
       return word;
     })
     .join(' ');
+};
+
+/* Create a function that takes a sequence of either strings or array of numbers, removes the surrounding duplicates and returns an array of items without any items with the same value next to each other and preserves the original order of items. 
+Examples: "AAAABBBCCDAABBB" ➞ ["A", "B", "C", "D", "A", "B"]
+          "ABBCcAD" ➞ ["A", "B", "C", "c", "A", "D"]
+          [1, 2, 2, 3, 3] ➞ [1, 2, 3] 
+*/
+
+const uniqueInOrder = sequence => {
+  return [...sequence].filter((item, i, arr) => {
+    return item !== arr[i - 1];
+  });
+};
+
+/* Given an array of numbers, write a function that returns a new array that has all duplicate elements removed, and is sorted from least to greatest value. 
+Example: [1, 4, 4, 4, 4, 4, 3, 2, 1, 2] ➞ [1, 2, 3, 4] */
+
+const uniqueSort = arr => {
+  return arr
+    .sort((a, b) => {
+      return a - b;
+    })
+    .filter((x, i, a) => {
+      return a.indexOf(x) === i;
+    });
 };
