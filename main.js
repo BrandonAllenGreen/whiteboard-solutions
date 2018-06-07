@@ -243,3 +243,35 @@ const sumTwoSmallestPosNums = arr => {
   }
   return arr[0];
 };
+
+/* Create a function that takes 3 arguments (x, y, z) and returns an array containing subarrays (e.g. [[], [], []]), each of a certain number of items, all set to either a string or an integer. 
+
+x arg: Number of subarrays contained within the main array.
+y arg: Number of items contained within each subarray(s).
+z arg: Item contained within each subarray(s).
+
+Example: 3, 2, 3 ➞ [[3, 3], [3, 3], [3, 3]] */
+
+const matrix = (x, y, z) => {
+  const arr = [];
+
+  for (let i = 0; i < x; i++) {
+    arr.push(Array(y).fill(z));
+  }
+  return arr;
+};
+
+/* Write a function that takes a string of one or more words as an argument and returns the same string, but with all five or more letter words reversed.
+Example: "This is a typical sentence." ➞ "This is a lacipyt .ecnetnes" */
+
+const reverseWords = str => {
+  return str
+    .split(' ')
+    .map(word => {
+      if (word.length >= 5) {
+        return [...word].reverse().join('');
+      }
+      return word;
+    })
+    .join(' ');
+};
