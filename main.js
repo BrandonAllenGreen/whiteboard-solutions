@@ -52,7 +52,7 @@ const addUp = n => {
 Example: 5! = 120 */
 
 const factorial = n => {
-  if (n === 1) {
+  if (n <= 1) {
     return 1;
   }
   return n * factorial(n - 1);
@@ -173,17 +173,73 @@ const mostUsedChar = str => {
   return maxChar;
 };
 
-/* Write a func that takes 4 str arguments. You will be comparing the first str to the 3 next str. Verify if the first str starts with the second str, includes the third str, & ends with the fourth str. If the first str passes all checks, return the str "My head, body, and tail.",otherwise, return "Incomplete.". 
+/* Write a func that takes 4 str arguments. You will be comparing the first str to the 3 next str. Verify if the first str starts with the second str, includes the third str, & ends with the fourth str. If the first str passes all checks, return the str "My head, body, and tail.",otherwise, return "Incomplete.".  **Don't use startsWith() or endsWith() str methods in solution!**
 Example: "Centipede", "Cent", "tip", "pede" ➞ "My head, body, and tail." */
 
 const verifySubstrs = (mainStr, head, body, tail) => {
+  const mainStrHead = mainStr.substr(0, head.length);
+  const mainStrTail = mainStr.substr(mainStr.length - tail.length);
 
-  let mainStrHead = mainStr.substr(0, head.length);
-  let mainStrTail = mainStr.substr(mainStr.length - tail.length)
-
-  if ( mainStrHead === head && mainStr.includes(body) && mainStrTail === tail ) {
+  if (mainStrHead === head && mainStr.includes(body) && mainStrTail === tail) {
     return 'My head, body, and tail.';
   }
 
-  return 'Incomplete.'
-}
+  return 'Incomplete.';
+};
+
+/* Create a func that takes an array of arrays with numbers. Return a new (single) array with the largest numbers of each. 
+Example: [[4, 2, 7, 1], [20, 70, 40, 90], [1, 2, 0]] ➞ [7, 90, 2]  */
+
+const findLargestNums = arrOfArrs => {
+  return arrOfArrs.map(arr => {
+    arr.sort((a, b) => {
+      return a - b;
+    });
+    return arr[arr.length - 1];
+  });
+};
+
+/* Create a function that alternates the case of the letters in a string.
+Example: "Hey, how are you?" ➞ "HeY, hOw aRe yOu?" */
+
+const alternatingCase = str => {
+  return str
+    .split('')
+    .map((char, i) => {
+      if (i % 2 === 0) {
+        return char.toUpperCase();
+      } else {
+        return char.toLowerCase();
+      }
+    })
+    .join('');
+};
+
+/* Create a function that takes a string, transforms all but the last 4 chars into "#" and returns the new masked string. Must accept a string of any length. 
+Example: "64607935616" ➞ "#######5616" */
+
+const maskify = str => {
+  if (str.length > 4) {
+    const hashed = '#'.repeat(str.length - 4);
+    return hashed + str.substr(str.length - 4);
+  }
+  return str;
+};
+
+/* Create a function that takes an array of numbers and returns the sum of the 2 lowest positive numbers. 
+Example: [-6, 19, 5, 42, -38, 2, 77] ➞ 7 */
+
+const sumTwoSmallestPosNums = arr => {
+  if (arr.length > 1) {
+    const posNums = arr.filter(n => {
+      return n > 0;
+    });
+
+    const sortedNums = posNums.sort((a, b) => {
+      return a - b;
+    });
+
+    return sortedNums[0] + sortedNums[1];
+  }
+  return arr[0];
+};
