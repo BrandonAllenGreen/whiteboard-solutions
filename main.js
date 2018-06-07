@@ -198,3 +198,19 @@ const findLargestNums = arrOfArrs => {
     return arr[arr.length - 1];
   });
 };
+
+/* Create a function that alternates the case of the letters in a string.
+Example: "Hey, how are you?" ➞ "HeY, hOw aRe yOu?" */
+
+const alternatingCase = str => {
+  return str
+    .split('')
+    .map((char, i) => {
+      if (i % 2 === 0) {
+        return char.toUpperCase();
+      } else {
+        return char.toLowerCase();
+      }
+    })
+    .join('');
+};
