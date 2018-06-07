@@ -177,8 +177,8 @@ const mostUsedChar = str => {
 Example: "Centipede", "Cent", "tip", "pede" ➞ "My head, body, and tail." */
 
 const verifySubstrs = (mainStr, head, body, tail) => {
-  let mainStrHead = mainStr.substr(0, head.length);
-  let mainStrTail = mainStr.substr(mainStr.length - tail.length);
+  const mainStrHead = mainStr.substr(0, head.length);
+  const mainStrTail = mainStr.substr(mainStr.length - tail.length);
 
   if (mainStrHead === head && mainStr.includes(body) && mainStrTail === tail) {
     return 'My head, body, and tail.';
@@ -213,4 +213,33 @@ const alternatingCase = str => {
       }
     })
     .join('');
+};
+
+/* Create a function that takes a string, transforms all but the last 4 chars into "#" and returns the new masked string. Must accept a string of any length. 
+Example: "64607935616" ➞ "#######5616" */
+
+const maskify = str => {
+  if (str.length > 4) {
+    const hashed = '#'.repeat(str.length - 4);
+    return hashed + str.substr(str.length - 4);
+  }
+  return str;
+};
+
+/* Create a function that takes an array of numbers and returns the sum of the 2 lowest positive numbers. 
+Example: [-6, 19, 5, 42, -38, 2, 77] ➞ 7 */
+
+const sumTwoSmallestPosNums = arr => {
+  if (arr.length > 1) {
+    const posNums = arr.filter(n => {
+      return n > 0;
+    });
+
+    const sortedNums = posNums.sort((a, b) => {
+      return a - b;
+    });
+
+    return sortedNums[0] + sortedNums[1];
+  }
+  return arr[0];
 };
