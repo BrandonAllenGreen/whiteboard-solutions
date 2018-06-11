@@ -78,6 +78,7 @@ const anagramCheck = (str1, str2) => {
       .sort()
       .join('');
   };
+
   return sortStr(str1) === sortStr(str2);
 };
 
@@ -242,4 +243,61 @@ const sumTwoSmallestPosNums = arr => {
     return sortedNums[0] + sortedNums[1];
   }
   return arr[0];
+};
+
+/* Create a function that takes 3 arguments (x, y, z) and returns an array containing subarrays (e.g. [[], [], []]), each of a certain number of items, all set to either a string or an integer. 
+
+x arg: Number of subarrays contained within the main array.
+y arg: Number of items contained within each subarray(s).
+z arg: Item contained within each subarray(s).
+
+Example: 3, 2, 3 ➞ [[3, 3], [3, 3], [3, 3]] */
+
+const matrix = (x, y, z) => {
+  const arr = [];
+
+  for (let i = 0; i < x; i++) {
+    arr.push(Array(y).fill(z));
+  }
+  return arr;
+};
+
+/* Write a function that takes a string of one or more words as an argument and returns the same string, but with all five or more letter words reversed.
+Example: "This is a typical sentence." ➞ "This is a lacipyt .ecnetnes" */
+
+const reverseWords = str => {
+  return str
+    .split(' ')
+    .map(word => {
+      if (word.length >= 5) {
+        return [...word].reverse().join('');
+      }
+      return word;
+    })
+    .join(' ');
+};
+
+/* Create a function that takes a sequence of either strings or array of numbers, removes the surrounding duplicates and returns an array of items without any items with the same value next to each other and preserves the original order of items. 
+Examples: "AAAABBBCCDAABBB" ➞ ["A", "B", "C", "D", "A", "B"]
+          "ABBCcAD" ➞ ["A", "B", "C", "c", "A", "D"]
+          [1, 2, 2, 3, 3] ➞ [1, 2, 3] 
+*/
+
+const uniqueInOrder = sequence => {
+  return [...sequence].filter((item, i, arr) => {
+    return item !== arr[i - 1];
+  });
+};
+
+/* Given an array of numbers, write a function that returns a new array that has all duplicate elements removed, and is sorted from least to greatest value. 
+Example: [1, 4, 4, 4, 4, 4, 3, 2, 1, 2] ➞ [1, 2, 3, 4] */
+
+const uniqueSort = arr => {
+  return arr
+    .sort((a, b) => {
+      return a - b;
+    })
+    .filter((x, i, a) => {
+      return a.indexOf(x) === i;
+    });
 };
