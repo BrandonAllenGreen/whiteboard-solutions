@@ -336,3 +336,12 @@ const findOdd = arr => {
     }
   }
 };
+
+/* Write a function that takes a string and returns true if it is a palindrome 
+Example: "A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!" ➞ true */
+
+const isPalindrome = str => {
+  const formatStr = str.toLowerCase().replace(/[^\w]/g, '');
+
+  return formatStr === [...formatStr].reverse().join('');
+};
