@@ -301,3 +301,38 @@ const uniqueSort = arr => {
       return a.indexOf(x) === i;
     });
 };
+
+/* Create a function that accepts an array of two strings and checks if the letters in the second string are present in the first string. 
+Example: ["trances", "Nectar"] ➞ true;  ["parses", "parsecs"] ➞ false; */
+
+const letterCheck = arr => {
+  const str1 = arr[0].toLowerCase();
+  const str2 = arr[1].toLowerCase();
+
+  const compare = [...str2].map(letter => {
+    return str1.includes(letter);
+  });
+
+  return compare.every(bool => bool === true);
+};
+
+/* Create a function that takes an array and finds the integer which appears an odd number of times.
+Example: [1, 1, 2, 2, 3, 3, 5, 5, 4, 4, 5] ➞ 5 */
+
+const findOdd = arr => {
+  const charObj = {};
+
+  for (char of arr) {
+    if (charObj[char]) {
+      charObj[char]++;
+    } else {
+      charObj[char] = 1;
+    }
+  }
+
+  for (char in charObj) {
+    if (charObj[char] % 2 === 1) {
+      return parseInt(char);
+    }
+  }
+};
