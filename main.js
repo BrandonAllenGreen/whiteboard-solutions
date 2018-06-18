@@ -58,6 +58,16 @@ const factorial = n => {
   return n * factorial(n - 1);
 };
 
+/* Return the nth Fibonacci number using recursion 
+ Example: fibonacci(12) = 144 */
+
+const fibronacci = n => {
+  if (n <= 1) {
+    return 1;
+  }
+  return fibronacci(n - 1) + fibronacci(n - 2);
+};
+
 /* Take an arr of names and return an arr with the first letter cap'd. 
 Example: ["samuel", "MABELLE", "LeTeCiA"] ➞ ["Samuel", "Mabelle", "Letitia"] */
 
@@ -344,4 +354,16 @@ const isPalindrome = str => {
   const formatStr = str.toLowerCase().replace(/[^\w]/g, '');
 
   return formatStr === [...formatStr].reverse().join('');
+};
+
+/* Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+Example: (["a", "b", "c", "d"], 2) ➞ [["a", "b"], ["c", "d"]] */
+
+const chunkArr = (arr, size) => {
+  const chunked = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    chunked.push(arr.slice(i, i + size));
+  }
+  return chunked;
 };
