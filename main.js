@@ -418,3 +418,16 @@ const compoundingLetters = str => {
     })
     .join('-');
 };
+
+/* Create a function that takes two arrays and combines them by alternatingly taking elements from each array in turn. 
+Example: ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5] ➞  ["a", 1, "b", 2, "c", 3, "d", 4, "e", 5]  */
+
+const mergeArrays = (arr1, arr2) => {
+  const merged = [];
+
+  for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+    if (arr1[i]) merged.push(arr1[i]);
+    if (arr2[i]) merged.push(arr2[i]);
+  }
+  return merged;
+};
