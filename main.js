@@ -86,7 +86,8 @@ const anagramCheck = (str1, str2) => {
       .toLowerCase()
       .split('')
       .sort()
-      .join('');
+      .join('')
+      .trim();
   };
 
   return sortStr(str1) === sortStr(str2);
@@ -357,7 +358,7 @@ const isPalindrome = str => {
 };
 
 /* Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
-Example: (["a", "b", "c", "d"], 2) ➞ [["a", "b"], ["c", "d"]] */
+Example: (["a", "b", "c", "d"], 2) ➞ [["a", "b"], ["c", "d"]]  */
 
 const chunkArr = (arr, size) => {
   const chunked = [];
@@ -366,4 +367,54 @@ const chunkArr = (arr, size) => {
     chunked.push(arr.slice(i, i + size));
   }
   return chunked;
+};
+
+/* You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
+Example: destroyer([1, 2, 3, 1, 2, 3], 2, 3) ➞ [1, 1]  */
+
+const destroyer = (arr, ...args) => {
+  const argArr = [...args];
+
+  return arr.filter(x => {
+    return !argArr.includes(x);
+  });
+};
+
+/* Create a function that takes a single string as an argument and returns an array containing the indexes of all capital letters in the string.
+Example: "eQuINoX" ➞ [1, 3, 4, 6];  "STRIKE" ➞ [0, 1, 2, 3, 4, 5] */
+
+const indexOfCaps = str => {
+  return str
+    .split('')
+    .map((char, index) => {
+      if (/[A-Z]/g.test(char)) {
+        return index;
+      }
+    })
+    .filter(x => {
+      return x !== undefined;
+    });
+};
+
+/* Create a function that takes an array of integers and removes the smallest value without changing the order of the elements.  If the smallest value has a duplicate within the array, remove only the first instance of the value.
+Example: [2, 5, 1, 2, 1] ➞ [2, 5, 2, 1] */
+
+const removeSmallest = arr => {
+  let lowNum = Math.min(...arr);
+
+  arr.splice(arr.indexOf(lowNum), 1);
+
+  return arr;
+};
+
+/* Create a function that takes a string and returns a new string with each new character accumulating by +1. Separate each set with a dash. 
+Example: "abcd" ➞ "A-Bb-Ccc-Dddd" */
+
+const compoundingLetters = str => {
+  return str
+    .split('')
+    .map((char, index) => {
+      return char.charAt(0).toUpperCase() + char.repeat(index);
+    })
+    .join('-');
 };
