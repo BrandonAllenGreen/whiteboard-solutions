@@ -100,9 +100,7 @@ const removeDupesAndSort = arr => {
   const filtered = arr.filter((x, i, a) => {
     return a.indexOf(x) === i;
   });
-  return filtered.sort((a, b) => {
-    return a - b;
-  });
+  return filtered.sort((a, b) => a - b);
 };
 
 /* Find the min, max, length and avg values for a given arr of integers.
@@ -331,19 +329,18 @@ const letterCheck = arr => {
 Example: [1, 1, 2, 2, 3, 3, 5, 5, 4, 4, 5] ➞ 5 */
 
 const findOdd = arr => {
-  const charObj = {};
-
-  for (char of arr) {
-    if (charObj[char]) {
-      charObj[char]++;
+  let numObj = arr.reduce((allNums, num) => {
+    if (num in allNums) {
+      allNums[num]++;
     } else {
-      charObj[char] = 1;
+      allNums[num] = 1;
     }
-  }
+    return allNums;
+  }, {});
 
-  for (char in charObj) {
-    if (charObj[char] % 2 === 1) {
-      return parseInt(char);
+  for (num in numObj) {
+    if (numObj[num] % 2 === 1) {
+      return +num;
     }
   }
 };
@@ -430,4 +427,71 @@ const mergeArrays = (arr1, arr2) => {
     if (arr2[i]) merged.push(arr2[i]);
   }
   return merged;
+};
+
+/* Create a function that takes a string of number words and returns a string containing 1s and 0s based on those words. The returned string's length should be a multiple of 8, if the string is not a multiple of 8 you should remove the numbers in excess. 
+
+Examples: 
+"Zero one zero ONE zero one zero one" ➞ "01010101";
+"one Zero zero one zero zero one one one one one zero oNe one one zero one zerO" ➞ "1001001111101110"; 
+"zero one zero one zero one zero one one two"  ➞ "01010101";  */
+
+const textToNumberBinary = str => {
+  let binaryStr = str
+    .toLowerCase()
+    .split(' ')
+    .map(x => {
+      if (x === 'zero') {
+        return '0';
+      } else if (x === 'one') {
+        return '1';
+      } else {
+        return '';
+      }
+    })
+    .filter(x => x.length > 0);
+
+  if (binaryStr.length < 8) {
+    return '';
+  } else {
+    for (let i = 0; i < binaryStr.length; i++) {
+      if (binaryStr.length % 8 === 0) {
+        return binaryStr.join('');
+      } else {
+        binaryStr.pop();
+      }
+    }
+  }
+};
+
+/* Create a function that takes an array of numbers and return its median.
+Example: [2, 5, 6, 2, 6, 3, 4] ➞ 4  */
+
+const median = arr => {
+  arr = arr.sort((a, b) => a - b);
+
+  if (arr.length % 2 === 0) {
+    const num1 = arr[arr.length / 2 - 1];
+    const num2 = arr[arr.length / 2];
+
+    return (num1 + num2) / 2;
+  } else {
+    return arr[Math.floor(arr.length / 2)];
+  }
+};
+
+/* Create a function that accepts a string as an argument and returns the first non-repeated character.  If non no-repeaated characters are present, return false.
+Example: 
+"it was then the frothy word met the round night" ➞ "a";
+"hheelloo" ➞ false;  */
+
+const firstNonRepeatedCharacter = str => {
+  const arr = str.split('');
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) {
+      return arr[i];
+    }
+  }
+  return false;
 };
