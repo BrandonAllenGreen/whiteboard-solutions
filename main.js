@@ -89,7 +89,6 @@ const anagramCheck = (str1, str2) => {
       .join('')
       .trim();
   };
-
   return sortStr(str1) === sortStr(str2);
 };
 
@@ -117,7 +116,6 @@ const minMaxLengthAverage = arr => {
     sorted.reduce((count, num) => {
       return count + num;
     }, 0) / len;
-
   return [min, max, len, +avg.toFixed(2)];
 };
 
@@ -165,7 +163,6 @@ const mostUsedChar = str => {
   const charObj = {};
   let max = 0;
   let maxChar = '';
-
   for (char of str) {
     if (charObj[char]) {
       charObj[char]++;
@@ -173,7 +170,6 @@ const mostUsedChar = str => {
       charObj[char] = 1;
     }
   }
-
   for (let char in charObj) {
     if (charObj[char] > max) {
       max = charObj[char];
@@ -193,7 +189,6 @@ const verifySubstrs = (mainStr, head, body, tail) => {
   if (mainStrHead === head && mainStr.includes(body) && mainStrTail === tail) {
     return 'My head, body, and tail.';
   }
-
   return 'Incomplete.';
 };
 
@@ -244,11 +239,9 @@ const sumTwoSmallestPosNums = arr => {
     const posNums = arr.filter(n => {
       return n > 0;
     });
-
     const sortedNums = posNums.sort((a, b) => {
       return a - b;
     });
-
     return sortedNums[0] + sortedNums[1];
   }
   return arr[0];
@@ -264,7 +257,6 @@ Example: 3, 2, 3 ➞ [[3, 3], [3, 3], [3, 3]] */
 
 const matrix = (x, y, z) => {
   const arr = [];
-
   for (let i = 0; i < x; i++) {
     arr.push(Array(y).fill(z));
   }
@@ -321,7 +313,6 @@ const letterCheck = arr => {
   const compare = [...str2].map(letter => {
     return str1.includes(letter);
   });
-
   return compare.every(bool => bool === true);
 };
 
@@ -337,7 +328,6 @@ const findOdd = arr => {
     }
     return allNums;
   }, {});
-
   for (num in numObj) {
     if (numObj[num] % 2 === 1) {
       return +num;
@@ -350,7 +340,6 @@ Example: "A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!" ➞
 
 const isPalindrome = str => {
   const formatStr = str.toLowerCase().replace(/[^\w]/g, '');
-
   return formatStr === [...formatStr].reverse().join('');
 };
 
@@ -359,7 +348,6 @@ Example: (["a", "b", "c", "d"], 2) ➞ [["a", "b"], ["c", "d"]]  */
 
 const chunkArr = (arr, size) => {
   const chunked = [];
-
   for (let i = 0; i < arr.length; i += size) {
     chunked.push(arr.slice(i, i + size));
   }
@@ -371,7 +359,6 @@ Example: destroyer([1, 2, 3, 1, 2, 3], 2, 3) ➞ [1, 1]  */
 
 const destroyer = (arr, ...args) => {
   const argArr = [...args];
-
   return arr.filter(x => {
     return !argArr.includes(x);
   });
@@ -398,9 +385,7 @@ Example: [2, 5, 1, 2, 1] ➞ [2, 5, 2, 1] */
 
 const removeSmallest = arr => {
   let lowNum = Math.min(...arr);
-
   arr.splice(arr.indexOf(lowNum), 1);
-
   return arr;
 };
 
@@ -421,7 +406,6 @@ Example: ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5] ➞  ["a", 1, "b", 2, "c", 3
 
 const mergeArrays = (arr1, arr2) => {
   const merged = [];
-
   for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
     if (arr1[i]) merged.push(arr1[i]);
     if (arr2[i]) merged.push(arr2[i]);
@@ -450,7 +434,6 @@ const textToNumberBinary = str => {
       }
     })
     .filter(x => x.length > 0);
-
   if (binaryStr.length < 8) {
     return '';
   } else {
@@ -469,11 +452,9 @@ Example: [2, 5, 6, 2, 6, 3, 4] ➞ 4  */
 
 const median = arr => {
   arr = arr.sort((a, b) => a - b);
-
   if (arr.length % 2 === 0) {
     const num1 = arr[arr.length / 2 - 1];
     const num2 = arr[arr.length / 2];
-
     return (num1 + num2) / 2;
   } else {
     return arr[Math.floor(arr.length / 2)];
@@ -487,7 +468,6 @@ Example:
 
 const firstNonRepeatedCharacter = str => {
   const arr = str.split('');
-
   for (let i = 0; i < arr.length; i++) {
     if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) {
       return arr[i];
