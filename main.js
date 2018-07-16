@@ -43,7 +43,7 @@ Example: 1 + 2 + 3 + 4 = 10. */
 
 const addUp = n => {
   if (n === 1) {
-    return 1;
+    return n;
   }
   return n + addUp(n - 1);
 };
@@ -195,13 +195,8 @@ const verifySubstrs = (mainStr, head, body, tail) => {
 /* Create a func that takes an array of arrays with numbers. Return a new (single) array with the largest numbers of each. 
 Example: [[4, 2, 7, 1], [20, 70, 40, 90], [1, 2, 0]] ➞ [7, 90, 2]  */
 
-const findLargestNums = arrOfArrs => {
-  return arrOfArrs.map(arr => {
-    arr.sort((a, b) => {
-      return a - b;
-    });
-    return arr[arr.length - 1];
-  });
+const findLargestNums = arr => {
+  return arr.map(x => x.sort((a, b) => b - a)[0]);
 };
 
 /* Create a function that alternates the case of the letters in a string.
