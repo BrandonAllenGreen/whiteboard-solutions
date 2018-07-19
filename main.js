@@ -470,3 +470,32 @@ const firstNonRepeatedCharacter = str => {
   }
   return false;
 };
+
+/* Given array of two numbers, return the sum of those two numbers plus the sum of all the numbers between them.  The lowest number will not always come first.
+Example:  [4, 1] ➞ 10  */
+
+const sumAllRange = arr => {
+  let sum = 0;
+  const sorted = arr.sort((a, b) => a - b);
+  for (let i = sorted[0]; i <= sorted[1]; i++) {
+    sum += i;
+  }
+  return sum;
+};
+
+/* Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. In other words, return the symmetric difference of the two arrays. 
+Example: [1, 2, 3, 5], [1, 2, 3, 4, 5] ➞ [4]  */
+
+const uniqueArray = (arr1, arr2) => {
+  return arr1
+    .filter(x => !arr2.includes(x))
+    .concat(arr2.filter(x => !arr1.includes(x)));
+};
+
+/* You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
+Example: destroyer([1, 2, 3, 1, 2, 3], 2, 3) *➞ [1, 1]  */
+
+const destroyer = arr => {
+  const args = [...arguments].slice(1);
+  return arr.filter(x => !args.includes(x));
+};
