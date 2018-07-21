@@ -493,9 +493,77 @@ const uniqueArray = (arr1, arr2) => {
 };
 
 /* You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
-Example: destroyer([1, 2, 3, 1, 2, 3], 2, 3) *➞ [1, 1]  */
+Example: destroyer([1, 2, 3, 1, 2, 3], 2, 3) ➞ [1, 1]  */
 
 const destroyer = arr => {
   const args = [...arguments].slice(1);
   return arr.filter(x => !args.includes(x));
+};
+
+/* Take 2 strings s1 and s2 including only letters from a to z. Return a new sorted string, the longest possible, containing distinct letters
+Example:  "aretheyhere", "yestheyarehere" ➞ "aehrsty"  */
+
+const longest = (s1, s2) => {
+  const charObj = {};
+  const str = s1 + s2;
+
+  for (let char of str) {
+    charObj[char] ? charObj[char]++ : (charObj[char] = 1);
+  }
+  return Object.keys(charObj)
+    .sort()
+    .join('');
+};
+
+/* Replace every letter in a string with the letter following it in the alphabet (ie. c becomes d, z becomes a). Then capitalize every vowel in this new string (a, e, i, o, u) and finally return this modified string.
+Example: 'hello*3' ➞  'Ifmnp*3' */
+
+const letterChanges = str => {
+  const abc = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z'
+  ];
+
+  const strArr = str.toLowerCase().split('');
+
+  const nextLetter = strArr.map(x => {
+    if (abc.includes(x)) {
+      return abc[abc.indexOf(x) + 1];
+    } else {
+      return x;
+    }
+  });
+
+  return nextLetter
+    .map(x => {
+      if (x.match(/[aeiou]/gi)) {
+        return x.toUpperCase();
+      }
+      return x;
+    })
+    .join('');
 };
