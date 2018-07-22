@@ -567,3 +567,16 @@ const letterChanges = str => {
     })
     .join('');
 };
+
+/* Given an array of integers, find the pair of adjacent elements that has the largest product and return that product.
+Example: [3, 6, -2, -5, 7, 3] ➞ 210 */
+
+const adjacentElementsProduct = numArr => {
+  const productArr = numArr
+    .map((x, idx, arr) => {
+      return arr[idx] * arr[idx - 1];
+    })
+    .sort((a, b) => a - b);
+
+  return productArr[productArr.length - 1];
+};
