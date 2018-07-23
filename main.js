@@ -401,9 +401,11 @@ Example: ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5] ➞  ["a", 1, "b", 2, "c", 3
 
 const mergeArrays = (arr1, arr2) => {
   const merged = [];
-  for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
-    if (arr1[i]) merged.push(arr1[i]);
-    if (arr2[i]) merged.push(arr2[i]);
+  const maxLen = Math.max(arr1.length, arr2.length);
+
+  for (let i = 0; i < maxLen; i++) {
+    if (arr1.length > i) merged.push(arr1[i]);
+    if (arr2.length > i) merged.push(arr2[i]);
   }
   return merged;
 };
