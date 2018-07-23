@@ -334,8 +334,8 @@ const findOdd = arr => {
 Example: "A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!" ➞ true */
 
 const isPalindrome = str => {
-  const formatStr = str.toLowerCase().replace(/[^\w]/g, '');
-  return formatStr === [...formatStr].reverse().join('');
+  str = str.toLowerCase().replace(/[\W]/g, '');
+  return str === [...str].reverse().join('');
 };
 
 /* Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
@@ -401,9 +401,11 @@ Example: ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5] ➞  ["a", 1, "b", 2, "c", 3
 
 const mergeArrays = (arr1, arr2) => {
   const merged = [];
-  for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
-    if (arr1[i]) merged.push(arr1[i]);
-    if (arr2[i]) merged.push(arr2[i]);
+  const maxLen = Math.max(arr1.length, arr2.length);
+
+  for (let i = 0; i < maxLen; i++) {
+    if (arr1.length > i) merged.push(arr1[i]);
+    if (arr2.length > i) merged.push(arr2[i]);
   }
   return merged;
 };
@@ -564,6 +566,64 @@ const letterChanges = str => {
         return x.toUpperCase();
       }
       return x;
+    })
+    .join('');
+};
+
+/* Given an array of integers, find the pair of adjacent elements that has the largest product and return that product.
+Example: [3, 6, -2, -5, 7, 3] ➞ 210 */
+
+const adjacentElementsProduct = numArr => {
+  const productArr = numArr
+    .map((x, idx, arr) => {
+      return arr[idx] * arr[idx - 1];
+    })
+    .sort((a, b) => a - b);
+
+  return productArr[productArr.length - 1];
+};
+
+/* Create a Circle constructor that creates a circle with a radius provided by an argument. The circles constructed must have two getters getArea() (PIr^2) and getPerimeter() (2PI*r) which give both respective areas and perimeter (circumference).
+Example:  
+
+let circy = new Circle(11);
+circy.getArea() ➞ 380.132711084365.  */
+
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+
+  getPerimeter() {
+    return 2 * Math.PI * this.radius;
+  }
+
+  getArea() {
+    return Math.PI * Math.pow(this.radius, 2);
+  }
+}
+
+/* An isogram is a word that has no repeating letters, consecutive or nonconsecutive. Create a function that takes a string and returns either true or false depending on whether or not it's an "isogram". 
+Example:  "Algorism" ➞ true,  "Consecutive" ➞ false  */
+
+const isIsogram = str => {
+  return (
+    str
+      .toLowerCase()
+      .split('')
+      .filter((x, i, a) => {
+        return a.indexOf(x) !== i;
+      }).length === 0
+  );
+};
+
+/* Create a function that takes both a string and an array of numbers as arguments. Rearrange the letters in the string to be in the order specified by the index numbers. Return the "remixed" string.
+Example:    "abcd", [0, 3, 1, 2]  ➞ "acdb"  */
+
+const remixStr = (str, arr) => {
+  return arr
+    .map((x, i, a) => {
+      return str.charAt(arr.indexOf(i));
     })
     .join('');
 };
