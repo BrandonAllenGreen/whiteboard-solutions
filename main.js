@@ -627,3 +627,21 @@ const remixStr = (str, arr) => {
     })
     .join('');
 };
+
+/* Given 2 strings, return a string that contains only the letters that are shared between the two.
+Example: "house", "home" ➞ "eho";  "Mickey", "mouse" ➞ "m" */
+
+const sharedLetters = (str1, str2) => {
+  const arr1 = str1.toLowerCase().split('');
+  const arr2 = str2.toLowerCase().split('');
+  const filteredArr = arr2.filter(x => -1 !== arr1.indexOf(x)).sort();
+  return Array.from(new Set(filteredArr)).join('');
+};
+
+/* Write a function that takes a string and calculates the number of letters and digits within it. Return the result as an object.
+Example: "H3ll0 Wor1d" ➞ {"LETTERS":  7, "DIGITS": 3}  */
+
+const countAll = str => ({
+  LETTERS: (str.match(/[a-z]/gi) || []).length,
+  DIGITS: (str.match(/\d/g) || []).length
+});
